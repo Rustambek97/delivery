@@ -15,7 +15,7 @@ class User(Base):
     adress=Column(String(300))
     is_staff=Column(Boolean,default=False)
     is_active=Column(Boolean,default=False)
-    zakazlar = relationship("Zakaz", back_populates="user")
+    zakaz = relationship("Zakaz", back_populates="user")
 
 class Zakaz(Base):
     __tablename__="zakaz"
@@ -28,7 +28,7 @@ class Zakaz(Base):
     products = relationship("Products", back_populates="zakaz")
 
     deliver_id=Column(Integer,ForeignKey("deliver.id"))
-    delivers = relationship("Deliver", back_populates="zakaz")
+    deliver = relationship("Deliver", back_populates="zakaz")
 
     zakaz_vaqti=Column(DateTime)
     yetkazish_vaqti=Column(DateTime)
@@ -48,11 +48,11 @@ class Products(Base):
     manzil=Column(String(300))
     ogirligi=Column(Float)
     saqlash_tartibi=Column(Text)
-    zakazlar = relationship("Zakaz", back_populates="products")
+    zakaz = relationship("Zakaz", back_populates="products")
 
 class Deliver(Base):
     __tablename__="deliver"
     id = Column(Integer, primary_key=True)
     mashina_turi=Column(String(50))
     narxi=Column(Float)
-    zakazlar = relationship("Zakaz", back_populates="deliver")
+    zakaz = relationship("Zakaz", back_populates="deliver")
